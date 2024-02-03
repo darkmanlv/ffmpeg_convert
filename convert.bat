@@ -24,7 +24,7 @@ for /r "%input_output_folder%" %%i in (*.mp4) do (
         )
 
         REM Compress the video using FFmpeg
-        ffmpeg -hwaccel cuvid -c:v h264_cuvid -i "!input_file!" -c:v h264_nvenc -vf scale=1280:-1 -b:v 2000k -maxrate 2000k -bufsize 4000k -c:a aac -b:a 128k "!output_file!"
+        ffmpeg -hwaccel_output_format cuda -c:v h264_cuvid -i "!input_file!" -c:v h264_nvenc -vf scale=1280:-1 -b:v 2000k -maxrate 2000k -bufsize 4000k -c:a aac -b:a 128k "!output_file!"
 
         REM Check if the compression was successful
         if not errorlevel 1 (
